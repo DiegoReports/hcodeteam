@@ -40,7 +40,9 @@ body {
   border: 1px solid #fff;
   box-shadow: 0 0 0 4px #222, 0 0 0 6px #fff;
   transform: rotate(calc(45deg * var(--i))); /* Aqui fazemos um calculo que se origina da largura completa do circulo dividido pela quantidade de mini-circulos existentes dentro vezes a variavel --i que criamos usando style */
-  transform-origin: 340px;
+  transform-origin: 340px; /* Aumento do espaçamento entre cada mini-circulo para que ele se alinhe dentro do circulo principal */
+  z-index: 100;
+  overflow: hidden;
 }
 .container .icon .imgBx img {
   position: absolute;
@@ -50,6 +52,62 @@ body {
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  transform: rotate(calc(-45deg * var(--i))); /* Colocamos o valor negativo para poder realizar o alinhamento das img dos mini-circulos */
+  transition: 0.5s;
+  filter: grayscale(1); /* Tornando os mini-circulos inativos preto e branco */
+}
+.container .icon .imgBx.active {
+  box-shadow: 0 0 0 6px #222, 0 0 0 12px #ff1d50;
+}
+.container .icon .imgBx.active img {
+  filter: grayscale(0); /* Tornando o mini-circulo colorido */
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.content::before {
+  content: "";
+  position: absolute;
+  inset: 120px;
+  border: 4px solid transparent;
+  border-left: 4px solid #ff1d50;
+  border-right: 4px solid #fff;
+  border-radius: 50%;
+  animation: animte_01 5s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+.content::after {
+  content: "";
+  position: absolute;
+  inset: 60px;
+  border: 4px solid transparent;
+  border-left: 4px solid #2196f3;
+  border-right: 4px solid #fff;
+  border-radius: 50%;
+  animation: animte_02 2.5s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes animte_01 {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+@keyframes animte_02 {
+  0% {
+    rotate: 360deg;
+  }
+  100% {
+    rotate: 0deg;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -25,7 +25,9 @@
       box-shadow: 0 0 0 4px #222,
       0 0 0 6px #fff;
       transform: rotate(calc(360deg/8 * var(--i))); /* Aqui fazemos um calculo que se origina da largura completa do circulo dividido pela quantidade de mini-circulos existentes dentro vezes a variavel --i que criamos usando style */
-      transform-origin: 340px;
+      transform-origin: 340px; /* Aumento do espaçamento entre cada mini-circulo para que ele se alinhe dentro do circulo principal */
+      z-index: 100;
+      overflow: hidden;
 
       img {
         position: absolute;
@@ -35,6 +37,18 @@
         height: 100%;
         border-radius: 50%;
         object-fit: cover;
+        transform: rotate(calc(-360deg/8 * var(--i))); /* Colocamos o valor negativo para poder realizar o alinhamento das img dos mini-circulos */
+        transition: 0.5s;
+        filter: grayscale(1); /* Tornando os mini-circulos inativos preto e branco */
+      }
+
+      &.active {
+        box-shadow: 0 0 0 6px #222,
+      0 0 0 12px #ff1d50;
+
+      img {
+        filter: grayscale(0); /* Tornando o mini-circulo colorido */
+      }
       }
     }
   }
