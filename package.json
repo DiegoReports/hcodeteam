@@ -1,0 +1,11 @@
+{
+  "name": "hcodeteam",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass assets/sass:assets/css --watch"
+  },
+  "author": "",
+  "license": "ISC"
+}
